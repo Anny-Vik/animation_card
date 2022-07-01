@@ -1,0 +1,161 @@
+
+
+body {
+  font-family: Montserrat, sans-serif;
+  background-color:  #17E9E0;
+}
+
+*:root {
+  --width: 300px;
+  --height: 400px;
+  --right: var(--width);
+  --bottom: var(--height);
+  --left: calc(var(--width) * -1);
+  --top: calc(var(--height) * -1);
+} 
+
+
+.card {
+  position: relative;
+  left: 40%;
+  margin-top: 10%;
+  width: var(--width);
+  height: var(--height); 
+}
+
+/* Card face */
+.card__content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  backdrop-filter: blur(10px);
+  width: inherit;
+  height: inherit;
+  border-radius: 5px;
+  background-color: #11111120;
+  box-shadow: 0 0 8px #ffffff25;
+  z-index: 1;
+  backface-visibility: hidden;
+  transition: transform .1s cubic-bezier(.2,.85,.4,1.275);
+}
+
+.card__content-img {
+  width: 70px;
+  height: 70px;
+  border: 3px solid #FF00FF;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.card__content-title {
+  margin-bottom: 15px;
+}
+
+.card__content-description {
+  margin-bottom: 25px;
+}
+
+.card__content-list-social {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-left: inherit;
+}
+
+.card__content-social {
+  list-style: none;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+}
+
+/* Card face end */
+
+/* Card back start */
+
+.card__back {
+z-index: 0;
+position: absolute;
+top: 0;
+background-color: #FB9A04;
+
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+transform: rotateY(-180deg);
+transition: transform .1s cubic-bezier(.2,.85,.4,1.275);
+}
+
+.card:hover .card__back {
+transform: rotateY(0deg);
+z-index: 2;
+}
+
+.card:hover .card__content {
+transform: rotateY(180deg);
+z-index: -1;
+}
+
+.aboute_content {
+  color: #000000;
+  padding: 50px;
+  text-align: center; 
+}
+
+/* Card back end */
+
+/* Cirkles start */
+
+.card__background-circle {
+  width: 120px;
+  height: 120px;
+  background: #FF00FF;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -1;
+}
+
+.card__background-circle:nth-child(1) {
+  left: -50px;
+  top: -50px;
+  animation: moveTopToBottom 10s linear infinite alternate-reverse;
+}
+
+.card__background-circle:nth-child(2) {
+  right: -50px;
+  bottom: -50px;
+  animation: moveBottomToTop 10s linear infinite alternate-reverse;
+}
+ /* Cirkles end */
+
+
+
+
+
+@keyframes moveTopToBottom {
+  0% {
+    transform: translateX(0px);
+  }
+  30% {
+    transform: translate(var(--right), 0);
+  }
+  100% {
+    transform: translate(var(--right), var(--bottom));
+  }
+}
+@keyframes moveBottomToTop {
+  0% {
+    transform: translateX(0px);
+  }
+  30% {
+    transform: translate(var(--left), 0);
+  }
+  100% {
+    transform: translate(var(--left), var(--top));
+  }
+}
